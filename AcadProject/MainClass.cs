@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System;
 using AcadProjectLineUtils;
+using AcadProjectExtractData;
 
 namespace AcadProject
 {
@@ -98,6 +99,19 @@ namespace AcadProject
             tr.Commit();
 
             mLineCollection.AddRange(mLineUtilObject.convertPolyLineToLine(mPolylineCollection, ed));
+
+
+            List<Line> lines = mLineUtilObject.cuttingLineIfCrossed(mLineCollection);
+            int numberOfPoint;
+            ExtractData extractData = new ExtractData();
+            double[] arrayX = extractData.getArrayX();
+            double[] arrayY = extractData.getArrayY();
+            bool[,] isLineMatrix = extractData.getIsLineMatrix();
+
+            numberOfPoint = mLineUtilObject.convertListLineToArray(mLineCollection, arrayX, arrayY, isLineMatrix);
+            ed.WriteMessage("number of Point: {0}", numberOfPoint);
+            extractData.setNumberOfPoint(numberOfPoint);
+
             sb.Append("Number of line : " + mLineCollection.Count + "\n");
             for (int i = 0; i < mLineCollection.Count; i++)
             {
@@ -105,7 +119,38 @@ namespace AcadProject
                 sb.Append("  " + mLineCollection[i].EndPoint.X + "  " + mLineCollection[i].EndPoint.Y + "\n");
 
             }
-            mLineUtilObject.dump(sb.ToString(), ed);
+            string fileName = "D:/linedata.txt";
+            mLineUtilObject.dump(sb.ToString(), ed,fileName);
+
+
+            sb = new StringBuilder();
+            sb.Append("Number of line : " + lines.Count + "\n");
+            for (int i = 0; i < lines.Count; i++)
+            {
+                sb.Append("\nLine " + (i + 1) + " : " + lines[i].StartPoint.X + "  " + lines[i].StartPoint.Y);
+                sb.Append("  " + lines[i].EndPoint.X + "  " + lines[i].EndPoint.Y + "\n");
+
+            }
+            fileName = "D:/lines.txt";
+            mLineUtilObject.dump(sb.ToString(), ed, fileName);
+
+            sb = new StringBuilder();
+            sb.Append("Number of line : " + lines.Count + "\n");
+            for (int i = 0; i < numberOfPoint; i++)
+            {
+                sb.Append("\nPoint " + (i + 1) + " : " + arrayX[i] + "  " + arrayY[i]);
+
+            }
+            fileName = "D:/point.txt";
+            mLineUtilObject.dump(sb.ToString(), ed, fileName);
+
+            fileName = "D:/extractInput.txt";
+            mLineUtilObject.dump(extractData.getStringInput(), ed, fileName);
+
+            extractData.processExtractData();
+            fileName = "D:/extractOutput.txt";
+            mLineUtilObject.dump(extractData.getStringResult(), ed, fileName);
+
         }
 
     }

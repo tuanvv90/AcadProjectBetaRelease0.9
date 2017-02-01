@@ -7,3 +7,11 @@ C:\Users\Admin\documents\visual studio 2010\Projects\AcadProject\AcadProject\bin
 C:\Users\Admin\documents\visual studio 2010\Projects\AcadProject\AcadProject\bin\Debug\AcCui.dll
 C:\Users\Admin\documents\visual studio 2010\Projects\AcadProject\AcadProject\obj\Debug\AcadProject.dll
 C:\Users\Admin\documents\visual studio 2010\Projects\AcadProject\AcadProject\obj\Debug\AcadProject.pdb
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\bin\Debug\AcadProject.dll
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\bin\Debug\AcadProject.pdb
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\bin\Debug\AdWindows.dll
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\bin\Debug\AcTcMgd.dll
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\bin\Debug\AcCui.dll
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\obj\Debug\AcadProject.csprojResolveAssemblyReference.cache
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\obj\Debug\AcadProject.dll
+E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\obj\Debug\AcadProject.pdb
