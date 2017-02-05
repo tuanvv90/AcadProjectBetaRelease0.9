@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtractData.cs" />
+    <Compile Include="LayerUtils.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="LineUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

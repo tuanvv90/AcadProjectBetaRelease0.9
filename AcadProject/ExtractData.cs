@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AcadProjectLayerUtils;
 
 namespace AcadProjectExtractData
 {
@@ -34,6 +35,12 @@ namespace AcadProjectExtractData
         //double[,] resultY = new double[20, 20];
         int[] numberPointOfSet = new int[MAX_SET];
         int numberSet;
+
+        //List of Layer
+        public List<LayerUtils> mListLayer = new List<LayerUtils>();
+        public PointUtils zeroPoint = new PointUtils();
+        public PointUtils centerPoint = new PointUtils();
+        public double MSS = 95.00;
 
         public ExtractData()
         {
@@ -72,17 +79,54 @@ namespace AcadProjectExtractData
 
             for (int i = 0; i < numberSet; i++)
             {
+                //Create new layer then add points to it
+                LayerUtils addLayer = new LayerUtils();
+
                 //Console.Write("Layer {0} : \n", i);
                 str += "Layer " + i + " : \n";
                 for (int j = 0; j < numberPointOfSet[i]; j++)
                 {
                     //Console.Write("x = {0}\ty = {1}\n", resultX[i, j], resultY[i, j]);
                     str += "x = "+ resultX[i, j] + "\ty = "+ resultY[i, j]+ "\n";
+                    PointUtils addPoint = new PointUtils();
+                    addPoint.setXY(resultX[i, j], resultY[i, j]);
+                    addLayer.addPointToLayer(addPoint);
                 }
+                mListLayer.Add(addLayer);
+
                 //Console.Write("\n");
                 str += "\n";
             }
+
+            calculateHighDistance(mListLayer, zeroPoint);
+            for (int i = 0; i < mListLayer.Count; i++) 
+            {
+                str += "\nDistance/High of Layer : " + i;
+                str += mListLayer[i].toStringData().ToString();
+            }
             return str;
+        }
+
+        public void calculateHighDistance(List<LayerUtils> listLayer, PointUtils zeroPoint) 
+        {
+            for (int i = 0; i < listLayer.Count; i++)
+            {
+                for (int j = 0; j < listLayer[i].numberOfPoint(); j++)
+                {
+                    int centerIndex = listLayer[i].numberOfPoint() / 2;
+                    
+                    double distance = Math.Round(Math.Abs(listLayer[i].getPointAt(j).getX() - listLayer[i].getPointAt(centerIndex).getX()), 2);
+                    double high = Math.Round(Math.Abs(listLayer[i].getPointAt(j).getY() - zeroPoint.getY()), 2) + MSS;
+                    
+                    listLayer[i].getPointAt(j).setDistance(distance);
+                    listLayer[i].getPointAt(j).setHigh(high);
+                }
+            }
+        }
+
+        public double calculateDistance(PointUtils point, PointUtils centerPoint)
+        {
+            return Math.Abs(point.getX() - centerPoint.getX());
         }
 
         public string getStringInput()

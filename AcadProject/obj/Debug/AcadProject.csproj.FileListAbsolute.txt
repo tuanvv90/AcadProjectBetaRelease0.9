@@ -15,3 +15,11 @@ E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\bin\Debug\AcC
 E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\obj\Debug\AcadProject.csprojResolveAssemblyReference.cache
 E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\obj\Debug\AcadProject.dll
 E:\Workspace\C#\ACAD\Github\tient1Project1\AcadProject\AcadProject\obj\Debug\AcadProject.pdb
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\bin\Debug\AcadProject.dll
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\bin\Debug\AcadProject.pdb
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\bin\Debug\AdWindows.dll
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\bin\Debug\AcTcMgd.dll
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\bin\Debug\AcCui.dll
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\obj\Debug\AcadProject.csprojResolveAssemblyReference.cache
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\obj\Debug\AcadProject.dll
+D:\WEB DESIGN\GitHub\Projects\AcadProject\AcadProject\obj\Debug\AcadProject.pdb
