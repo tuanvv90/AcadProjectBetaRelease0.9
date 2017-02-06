@@ -94,7 +94,7 @@ namespace AcadProject
 
             // Get the MSS value entered by the user
             PromptDoubleResult pMssRes = doc.Editor.GetDouble(pMssOpts);
-            extractData.setMMS(pMssRes.Value);
+            extractData.setMss(pMssRes.Value);
             
             if (pMssRes.Status != PromptStatus.OK)
                 return;

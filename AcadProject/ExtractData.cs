@@ -58,7 +58,7 @@ namespace AcadProjectExtractData
             numberOfPoint = nPoints;
         }
 
-        public void setMMS(double mss)
+        public void setMss(double mss)
         {
             this.MSS = mss;
         }
