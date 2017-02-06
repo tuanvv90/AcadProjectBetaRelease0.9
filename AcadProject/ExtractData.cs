@@ -40,7 +40,7 @@ namespace AcadProjectExtractData
         public List<LayerUtils> mListLayer = new List<LayerUtils>();
         public PointUtils zeroPoint = new PointUtils();
         public PointUtils centerPoint = new PointUtils();
-        public double MSS = 95.00;
+        public double MSS = 0.0;
 
         public ExtractData()
         {
@@ -56,6 +56,16 @@ namespace AcadProjectExtractData
         public void setNumberOfPoint(int nPoints)
         {
             numberOfPoint = nPoints;
+        }
+
+        public void setMMS(double mss)
+        {
+            this.MSS = mss;
+        }
+
+        public double getMss()
+        {
+            return this.MSS;
         }
 
         public double[] getArrayX()
@@ -98,7 +108,7 @@ namespace AcadProjectExtractData
                 str += "\n";
             }
 
-            calculateHighDistance(mListLayer, zeroPoint);
+            calculateHighDistance(mListLayer, zeroPoint, getMss());
             for (int i = 0; i < mListLayer.Count; i++) 
             {
                 str += "\nDistance/High of Layer : " + i;
@@ -107,7 +117,7 @@ namespace AcadProjectExtractData
             return str;
         }
 
-        public void calculateHighDistance(List<LayerUtils> listLayer, PointUtils zeroPoint) 
+        public void calculateHighDistance(List<LayerUtils> listLayer, PointUtils zeroPoint, double MSS) 
         {
             for (int i = 0; i < listLayer.Count; i++)
             {
@@ -122,11 +132,6 @@ namespace AcadProjectExtractData
                     listLayer[i].getPointAt(j).setHigh(high);
                 }
             }
-        }
-
-        public double calculateDistance(PointUtils point, PointUtils centerPoint)
-        {
-            return Math.Abs(point.getX() - centerPoint.getX());
         }
 
         public string getStringInput()

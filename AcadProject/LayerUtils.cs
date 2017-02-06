@@ -11,8 +11,7 @@ namespace AcadProjectLayerUtils
         public double High, Distance;
         public PointUtils() 
         {
-            High = Distance = X = 0.0;
-            Y = 766.30;//Zero Point
+            High = Distance = X = Y = 0.0;
         }
 
         public void setXY(double X, double Y) 
@@ -73,7 +72,6 @@ namespace AcadProjectLayerUtils
         public StringBuilder toStringData() 
         {
             StringBuilder layerDataSb = new StringBuilder();
-            //layerDataSb.Append("\nDistance/High of layer : ");
             for (int i = 0; i < listOfPoint.Count; i++) 
             {
                 layerDataSb.Append("\n" + listOfPoint[i].getDistance() + " , +" + listOfPoint[i].getHigh());

@@ -30,6 +30,8 @@ namespace AcadProject
         //LINE UTILS OBJECTs
         LineUtils mLineUtilObject = new LineUtils();
 
+        //EXTRACT DATA OBJECT//Make it as global variable
+        ExtractData extractData = new ExtractData();
 
         [CommandMethod("DST", CommandFlags.UsePickSet)]
         public void SelectAllLines()
@@ -57,6 +59,48 @@ namespace AcadProject
 
             if (psr.Status != PromptStatus.OK)
                 return;
+
+            //[[---------------------------------------------------------
+            //Get Zero point
+            PromptPointResult pPtRes;
+            PromptPointOptions pPtOpts = new PromptPointOptions("");
+
+            // Prompt for the start point
+            pPtOpts.Message = "\nPick Zero point : ";
+            pPtRes = doc.Editor.GetPoint(pPtOpts);
+            Point3d ptZero = pPtRes.Value;
+            extractData.zeroPoint.setXY(ptZero.X, ptZero.Y); 
+
+            // Exit if the user presses ESC or cancels the command
+            if (pPtRes.Status != PromptStatus.OK) return;
+            //---------------------------------------------------------]]
+
+
+            //[[----------------------------------------------------------
+            //Get comparison level in double
+            PromptDoubleOptions pMssOpts = new PromptDoubleOptions("");
+            pMssOpts.Message = "\nEnter MSS :  ";
+
+            // Restrict input to positive and non-negative values
+            pMssOpts.AllowZero = false;
+            pMssOpts.AllowNegative = false;
+
+            // Define the valid keywords and allow Enter
+            pMssOpts.Keywords.Add("Big");
+            pMssOpts.Keywords.Add("Small");
+            pMssOpts.Keywords.Add("Regular");
+            pMssOpts.Keywords.Default = "Regular";
+            pMssOpts.AllowNone = true;
+
+            // Get the MSS value entered by the user
+            PromptDoubleResult pMssRes = doc.Editor.GetDouble(pMssOpts);
+            extractData.setMMS(pMssRes.Value);
+            
+            if (pMssRes.Status != PromptStatus.OK)
+                return;
+
+            //----------------------------------------------------------]]
+
 
             //Dump debug information to txt file
             var sb = new StringBuilder();
@@ -103,7 +147,7 @@ namespace AcadProject
 
             List<Line> lines = mLineUtilObject.cuttingLineIfCrossed(mLineCollection);
             int numberOfPoint;
-            ExtractData extractData = new ExtractData();
+            //ExtractData extractData = new ExtractData();
             double[] arrayX = extractData.getArrayX();
             double[] arrayY = extractData.getArrayY();
             bool[,] isLineMatrix = extractData.getIsLineMatrix();
