@@ -96,7 +96,10 @@ namespace AcadProjectLineUtils
                 double cendX = currentLine.EndPoint.X;
                 double cendY = currentLine.EndPoint.Y;
 
-                double crossedX = 0, crossedY = 0;
+                double cDx = Math.Abs(cendX - cstartX);
+                double cDy = Math.Abs(cendY - cstartY);
+
+                double crossedX = 0, crossedY = 0, oDx = 0, oDy = 0;
                 bool isCrossed = false;
 
                 for (int j = 0; j < lines.Count; j++)
@@ -108,6 +111,10 @@ namespace AcadProjectLineUtils
                     // end point
                     double oendX = otherLine.EndPoint.X;
                     double oendY = otherLine.EndPoint.Y;
+
+                    oDx = Math.Abs(oendX - ostartX);
+                    oDy = Math.Abs(oendY - ostartY); 
+
 
                     double startDx, endDx, startDy, endDy;
 
@@ -173,7 +180,7 @@ namespace AcadProjectLineUtils
 
                 }
 
-                if (isCrossed)
+                if (isCrossed && cDx != 0 && oDx != 0 && cDy/cDx - oDy/oDx > 0.1)
                 {
                     Point3d point1 = new Point3d(cstartX, cstartY, 0);
                     Point3d point2 = new Point3d(crossedX, crossedY, 0);

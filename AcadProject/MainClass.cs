@@ -108,7 +108,8 @@ namespace AcadProject
             double[] arrayY = extractData.getArrayY();
             bool[,] isLineMatrix = extractData.getIsLineMatrix();
 
-            numberOfPoint = mLineUtilObject.convertListLineToArray(mLineCollection, arrayX, arrayY, isLineMatrix);
+            numberOfPoint = mLineUtilObject.convertListLineToArray(lines, arrayX, arrayY, isLineMatrix);
+            //numberOfPoint = mLineUtilObject.convertListLineToArray(mLineCollection, arrayX, arrayY, isLineMatrix);
             ed.WriteMessage("number of Point: {0}", numberOfPoint);
             extractData.setNumberOfPoint(numberOfPoint);
 
