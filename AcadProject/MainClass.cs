@@ -45,7 +45,7 @@ namespace AcadProject
             mLayerCollection.Clear();
             mPolylineCollection.Clear();
             mLineCollection.Clear();
-
+            extractData.mListLayer.Clear();
 
             PromptSelectionOptions pso = new PromptSelectionOptions();
 
